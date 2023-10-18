@@ -9,3 +9,6 @@
  * please view the LICENSE file that was distributed with this source code.
  * @link https://github.com/heimseiten/contao-fleximages-bundle
  */
+
+$GLOBALS['TL_HEAD'][] = '<link rel="stylesheet" href="/bundles/heimseitencontaofleximages/flex-images.css">';
+$GLOBALS['TL_HEAD'][] = '<script src="/bundles/heimseitencontaofleximages/flex-images.min.js"></script>';
