@@ -1,0 +1,38 @@
+{% extends "@Contao/content_element/gallery.html.twig" %}
+
+{% block figure_component %}
+  {% if figure.image.img.width %}
+    {% if figure.image.img.height %}
+      {% set figure_attributes = attrs()
+        .set('data-w', figure.image.img.width) 
+        .set('data-h', figure.image.img.height) 
+      %}
+      {% set figure_attributes = attrs(figure_attributes|default).addClass('item') %}
+    {% endif %}
+  {% endif %}
+  {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="flex-images fleximages_{{ data.id }}">
+      {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block wrapper %}  
+  {{ parent() }}
+  {% set maxHeight = '180' %}
+  {% if data.flex_gallery_image_height %} 
+    {% set maxHeight = data.flex_gallery_image_height %}
+  {% endif %}
+  {% set assembledScript = '<script> new flexImages({ selector: ".fleximages_' ~ data.id ~ '", rowHeight: "' ~ maxHeight ~ '" }); </script>' %}
+  {{ assembledScript|raw }}
+{% endblock %}
+
+{% block list %}
+  {% for item in list.items %}
+    {%- block list_item %}
+      {{ parent() }}
+    {% endblock -%}
+  {% endfor %}
+{% endblock %}
