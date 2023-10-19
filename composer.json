@@ -2,10 +2,7 @@
     "name": "heimseiten/contao-fleximages-bundle",
     "description": "Verwendet flexImages als Galerie.",
     "keywords": [
-        "contao",
-        "bundle",
-        "tag 3",
-        "tag 4"
+        "masonry"
     ],
     "type": "contao-bundle",
     "license": "GPL-3.0-or-later",
