@@ -3,41 +3,51 @@
 {% set imageHeight = '0' %}
 
 {% block figure_component %}
-  {% if figure.image.img.width %}
-    {% if figure.image.img.height %}
-      {% set figure_attributes = attrs()
-        .set('data-w', figure.image.img.width) 
-        .set('data-h', figure.image.img.height) 
-      %}
-      {% set figure_attributes = attrs(figure_attributes|default).addClass('item') %}
+  {% if data.use_flex_gallery_image %} 
+    {% if figure.image.img.width %}
+      {% if figure.image.img.height %}
+        {% set figure_attributes = attrs()
+          .set('data-w', figure.image.img.width) 
+          .set('data-h', figure.image.img.height) 
+        %}
+        {% set figure_attributes = attrs(figure_attributes|default).addClass('item') %}
+      {% endif %}
     {% endif %}
+    {{ parent() }}
+    {% set imageHeight = figure.image.img.height %}
+    {{ app.session.set('imageHeight', imageHeight) }}
+  {% else %}
+    {{ parent() }}
   {% endif %}
-  {{ parent() }}
-  {% set imageHeight = figure.image.img.height %}
-  {{ app.session.set('imageHeight', imageHeight) }}
 {% endblock %}
 
 {% block content %}
+  {% if data.use_flex_gallery_image %} 
     <div class="flex-images fleximages_{{ data.id }}">
       {{ parent() }}
     </div>
+  {% else %}
+    {{ parent() }}  
+  {% endif %}
 {% endblock %}
 
 {% block wrapper %}  
   {{ parent() }}
-  {% set maxHeight = '180' %}
-  {% if data.flex_gallery_image_height %} 
-    {% set maxHeight = data.flex_gallery_image_height %}
-  {% endif %}
   {% set imageHeight = app.session.get('imageHeight') %}
   {% set assembledScript = '<script> new flexImages({ selector: ".fleximages_' ~ data.id ~ '", rowHeight: "' ~ imageHeight ~ '" }); </script>' %}
-  {{ assembledScript|raw }}
+  {% if data.use_flex_gallery_image %} 
+    {{ assembledScript|raw }}
+  {% endif %}
 {% endblock %}
 
 {% block list %}
-  {% for item in list.items %}
-    {%- block list_item %}
-      {{ parent() }}
-    {% endblock -%}
-  {% endfor %}
+  {% if data.use_flex_gallery_image %} 
+    {% for item in list.items %}
+      {%- block list_item %}
+        {{ parent() }}
+      {% endblock -%}
+    {% endfor %}
+  {% else %}
+    {{ parent() }}  
+  {% endif %}
 {% endblock %}
