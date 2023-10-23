@@ -2,4 +2,4 @@
 
 declare(strict_types=1);
 
-$GLOBALS['TL_LANG']['tl_content']['flex_gallery_image_height'] = ['Zeilenhöhe für flexImages', 'In Pixeln.'];
+$GLOBALS['TL_LANG']['tl_content']['use_flex_gallery_image'] = ['flexImages verwenden', 'Alle Bilder müssen die gleiche Höhe haben.'];
