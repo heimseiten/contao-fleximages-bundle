@@ -11,10 +11,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['use_flex_gallery_image'] = [
     'sql'       => array('type' => 'boolean', 'default' => false)
 ];
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['perRow']['eval']['tl_class'] = 'w25 hidden';
-$GLOBALS['TL_DCA']['tl_content']['fields']['perPage']['eval']['tl_class'] = 'w25';
-$GLOBALS['TL_DCA']['tl_content']['fields']['numberOfItems']['eval']['tl_class'] = 'w25';
-
 PaletteManipulator::create()
     ->addField('use_flex_gallery_image', 'image_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('gallery', 'tl_content') 
