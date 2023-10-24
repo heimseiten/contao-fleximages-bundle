@@ -3,10 +3,10 @@
 {% block figure_component %}
   {% if data.use_fleximages %} 
     {% if figure.image.img.width and figure.image.img.height %}
-      {% set figure_attributes = attrs()
+      {% set figure_attributes = attrs(figure_attributes|default)
         .addClass('item')
         .set('data-w', figure.image.img.width) 
-        .set('data-h', figure.image.img.height)
+        .set('data-h', figure.image.img.height) 
       %}
     {% endif %}
     {{ parent() }}
@@ -17,7 +17,9 @@
 
 {% block content %}
   {% if data.use_fleximages %} 
-    <div class="flex-images id_{{ data.id }}">{{ parent() }}</div>
+    <div class="flex-images id_{{ data.id }}">
+      {{ parent() }}
+    </div>
   {% else %}
     {{ parent() }}  
   {% endif %}
