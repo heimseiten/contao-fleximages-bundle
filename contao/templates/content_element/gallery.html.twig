@@ -1,5 +1,58 @@
 {% extends "@Contao/content_element/gallery.html.twig" %}
 
+{% block figure_component %}
+  {% if data.use_fleximages %} 
+    {% if figure.image.img.width and figure.image.img.height %}
+      {% set figure_attributes = attrs()
+        .set('data-w', figure.image.img.width) 
+        .set('data-h', figure.image.img.height) 
+      %}
+      {% set figure_attributes = attrs(figure_attributes|default).addClass('item') %}
+    {% endif %}
+    {{ parent() }}
+  {% else %}
+    {{ parent() }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if data.use_fleximages %} 
+    <div class="flex-images id_{{ data.id }}">
+      {{ parent() }}
+    </div>
+  {% else %}
+    {{ parent() }}  
+  {% endif %}
+{% endblock %}
+
+{% block wrapper %}  
+  {{ parent() }}
+  {% if data.use_fleximages %}
+    {% add to body %}
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          if ( document.querySelector(".flex-images figure:first-child").getAttribute("data-h") ) {
+            new flexImages({ selector: ".flex-images.id_{{ data.id|e('js') }}", rowHeight: document.querySelector(".flex-images.id_{{ data.id|e('js') }} figure:first-child").getAttribute("data-h") })
+          }
+        })      
+      </script>
+    {% endadd %}
+  {% endif %}
+{% endblock %}
+
+{% block list %}
+  {% if data.use_fleximages %} 
+    {% for item in list.items %}
+      {%- block list_item %}
+        {{ parent() }}
+      {% endblock -%}
+    {% endfor %}
+  {% else %}
+    {{ parent() }}  
+  {% endif %}
+{% endblock %}
+{% extends "@Contao/content_element/gallery.html.twig" %}
+
 {% set imageHeight = '0' %}
 
 {% block figure_component %}
