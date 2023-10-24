@@ -11,4 +11,4 @@
  */
 
 $GLOBALS['TL_HEAD'][] = '<link rel="stylesheet" href="/bundles/heimseitencontaofleximages/flex-images.css">';
-$GLOBALS['TL_HEAD'][] = '<script src="/bundles/heimseitencontaofleximages/flex-images.min.js"></script>';
+$GLOBALS['TL_HEAD'][] = '<script defer src="/bundles/heimseitencontaofleximages/flex-images.min.js"></script>';
