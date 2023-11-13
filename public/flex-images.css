@@ -1,3 +1,19 @@
-.flex-images { overflow: hidden; }
-.flex-images .item { float: left; margin: 4px; border: 1px solid #eee; box-sizing: content-box; overflow: hidden; position: relative;  }
-.flex-images .item img { display: block; width: auto; height: 100%; }
+.flex-images { 
+    --image-gap: 4px;
+    overflow: hidden; 
+    margin-left: calc( var(--image-gap) * -1 ); 
+    margin-right: calc( var(--image-gap) * -1 ); 
+}
+.flex-images .item { 
+    float: left; 
+    margin: var(--image-gap); 
+    border: 0; 
+    box-sizing: content-box; 
+    overflow: hidden; 
+    position: relative;
+}
+.flex-images .item img { 
+    display: block;
+    width: auto;
+    height: 100%;
+}
