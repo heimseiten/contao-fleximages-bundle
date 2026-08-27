@@ -1,8 +1,11 @@
 {
     "name": "heimseiten/contao-fleximages-bundle",
-    "description": "Verwendet flexImages als Galerie.",
+    "description": "Erweitert das Inhaltselement Galerie um die Option „flexImages verwenden“: Die Bilder werden zeilenweise angeordnet, behalten das Verhältnis von Breite und Höhe und füllen die verfügbare Breite bündig aus.",
     "keywords": [
-        "masonry"
+        "galerie",
+        "bilder",
+        "layout",
+        "fleximages"
     ],
     "type": "contao-bundle",
     "license": "GPL-3.0-or-later",
